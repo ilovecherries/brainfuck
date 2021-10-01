@@ -4,10 +4,10 @@
 
 int main(int argc, char *argv[])
 {	
-	int32_t memory[sizeof(uint32_t)] = {0};
+	int32_t memory[3000] = {0};
 	uint32_t index = 0;
 
-	uint32_t stack[sizeof(uint8_t)] = {0};
+	uint32_t stack[256] = {0};
 	uint8_t stack_index = 0;
 
 	char *program = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
