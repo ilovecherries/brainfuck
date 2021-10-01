@@ -4,7 +4,7 @@ output:= brainfuck.out
 srcs:= brainfuck
 
 # compiler flags
-CFLAGS+= -Wall -Wextra -Os -g
+CFLAGS+= -Wall -Wextra -O0 -g
 # linker flags
 #LDFLAGS+= -lX11 -llua5.3
 # shortcut for -l arguments:

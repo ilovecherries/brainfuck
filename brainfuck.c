@@ -2,15 +2,27 @@
 #include <stdint.h>
 #include <string.h>
 
-int main(int argc, char *argv[])
-{	
-	int32_t memory[3000] = {0};
-	uint32_t index = 0;
+#define MESSAGE "Brainfuck Interpreter\nWritten by Cherry\n-----\n"
 
-	uint32_t stack[256] = {0};
+int main(int argc, const char *argv[])
+{	
+	/* if (argc == 1) { */
+	/* 	printf("%sInput the program as an argument.", MESSAGE); */
+	/* 	return 0; */
+	/* } else if (argc > 2){ */
+	/* 	printf("%sToo many arguments.", MESSAGE); */
+	/* 	return 1;		 */
+	/* } */
+
+	/* const char *program = argv[1]; */
+	const char *program = "++[-]";
+
+	int16_t memory[UINT16_MAX] = {0};
+	uint16_t index = 0;
+
+	uint32_t stack[UINT8_MAX] = {0};
 	uint8_t stack_index = 0;
 
-	char *program = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
 	uint32_t length = strlen(program);
 
 	for (uint32_t i = 0; i < length; ++i) {
@@ -24,7 +36,7 @@ int main(int argc, char *argv[])
 		case '+': { // increase memory cell at pointer
 			++memory[index]; break;
 		}
-		case '-': { // increase memory cell at pointer
+		case '-': { // decrease memory cell at pointer
 			--memory[index]; break;
 		}
 		case '.': { // output character at pointer
@@ -48,7 +60,9 @@ int main(int argc, char *argv[])
 		}
 		case ']': { // jump to matching brace if cell is nonzero
 			if (memory[index] != 0) {
-				i = stack[stack_index] + 1;
+				i = stack[stack_index - 1];
+			} else {
+				stack_index--;
 			}
 		}
 		}
